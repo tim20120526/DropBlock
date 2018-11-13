@@ -2,8 +2,8 @@ import torch
 import numpy as np
 import torch.nn.functional as F
 
-def Dropblock(feature,block_size,keep_prob): 
-    b,c,w,h = feature.size()
+def Dropblock(feature_input,block_size,keep_prob):  
+    b,c,w,h = feature_input.size()
     bernoulli_mask_line = w - (block_size-1)
     whole_mask = torch.ones(w,h).cuda()
 
@@ -27,10 +27,10 @@ def Dropblock(feature,block_size,keep_prob):
 
     whole_mask = whole_mask.unsqueeze(0).unsqueeze(0)
     whole_mask = whole_mask.expand(b,c,w,h)
-    feature = feature* whole_mask
-    feature = feature* (count_mask/count_ones)
+    feature_output = feature_input* whole_mask
+    feature_output = feature_output* (count_mask/count_ones)
 
-    return feature,whole_mask
+    return feature_output
 
 
 
