@@ -1,2 +1,2 @@
 # DropBlock
-Implementation of DropBlock in Pytorch.
+Implementation of DropBlock in Pytorch,just a function.
